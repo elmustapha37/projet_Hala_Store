@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hala_storeModelF2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="command">
+    <Key>
+      <PropertyRef Name="idCmd" />
+    </Key>
+    <Property Name="idCmd" Type="int" Nullable="false" />
+    <Property Name="Nomclient" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="NomProduit" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Qnt" Type="int" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="total" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="Date_Cmd" Type="date" />
+    <Property Name="id_F" Type="int" />
+  </EntityType>
+  <EntityType Name="factur">
+    <Key>
+      <PropertyRef Name="id_F" />
+    </Key>
+    <Property Name="id_F" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nomclient" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="NomProduit" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Qnt" Type="int" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="total" Type="decimal" Precision="9" Scale="2" />
+  </EntityType>
+  <Association Name="FK__command__id_F__60A75C0F">
+    <End Role="factur" Type="Self.factur" Multiplicity="0..1" />
+    <End Role="command" Type="Self.command" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="factur">
+        <PropertyRef Name="id_F" />
+      </Principal>
+      <Dependent Role="command">
+        <PropertyRef Name="id_F" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hala_storeModelF2StoreContainer">
+    <EntitySet Name="command" EntityType="Self.command" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="factur" EntityType="Self.factur" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__command__id_F__60A75C0F" Association="Self.FK__command__id_F__60A75C0F">
+      <End Role="factur" EntitySet="factur" />
+      <End Role="command" EntitySet="command" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

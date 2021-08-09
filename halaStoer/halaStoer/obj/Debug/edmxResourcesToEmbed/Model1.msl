@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hala_storeModelStoreContainer" CdmEntityContainer="hala_storeEntities">
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="hala_storeModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="idC" ColumnName="idC" />
+          <ScalarProperty Name="NomC" ColumnName="NomC" />
+          <ScalarProperty Name="cin" ColumnName="cin" />
+          <ScalarProperty Name="pasword" ColumnName="pasword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

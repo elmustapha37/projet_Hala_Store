@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hala_storeModelF2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="command">
+          <Key>
+            <PropertyRef Name="idCmd" />
+          </Key>
+          <Property Name="idCmd" Type="int" Nullable="false" />
+          <Property Name="Nomclient" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="NomProduit" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Qnt" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="total" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="Date_Cmd" Type="date" />
+          <Property Name="id_F" Type="int" />
+        </EntityType>
+        <EntityType Name="factur">
+          <Key>
+            <PropertyRef Name="id_F" />
+          </Key>
+          <Property Name="id_F" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nomclient" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="NomProduit" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Qnt" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="total" Type="decimal" Precision="9" Scale="2" />
+        </EntityType>
+        <Association Name="FK__command__id_F__60A75C0F">
+          <End Role="factur" Type="Self.factur" Multiplicity="0..1" />
+          <End Role="command" Type="Self.command" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="factur">
+              <PropertyRef Name="id_F" />
+            </Principal>
+            <Dependent Role="command">
+              <PropertyRef Name="id_F" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hala_storeModelF2StoreContainer">
+          <EntitySet Name="command" EntityType="Self.command" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="factur" EntityType="Self.factur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__command__id_F__60A75C0F" Association="Self.FK__command__id_F__60A75C0F">
+            <End Role="factur" EntitySet="factur" />
+            <End Role="command" EntitySet="command" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hala_storeModelF2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="command">
+          <Key>
+            <PropertyRef Name="idCmd" />
+          </Key>
+          <Property Name="idCmd" Type="Int32" Nullable="false" />
+          <Property Name="Nomclient" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomProduit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qnt" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="total" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="Date_Cmd" Type="DateTime" Precision="0" />
+          <Property Name="id_F" Type="Int32" />
+          <NavigationProperty Name="factur" Relationship="Self.FK__command__id_F__60A75C0F" FromRole="command" ToRole="factur" />
+        </EntityType>
+        <EntityType Name="factur">
+          <Key>
+            <PropertyRef Name="id_F" />
+          </Key>
+          <Property Name="id_F" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nomclient" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomProduit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qnt" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="total" Type="Decimal" Precision="9" Scale="2" />
+          <NavigationProperty Name="commands" Relationship="Self.FK__command__id_F__60A75C0F" FromRole="factur" ToRole="command" />
+        </EntityType>
+        <Association Name="FK__command__id_F__60A75C0F">
+          <End Role="factur" Type="Self.factur" Multiplicity="0..1" />
+          <End Role="command" Type="Self.command" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="factur">
+              <PropertyRef Name="id_F" />
+            </Principal>
+            <Dependent Role="command">
+              <PropertyRef Name="id_F" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hala_storeEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="commands" EntityType="Self.command" />
+          <EntitySet Name="facturs" EntityType="Self.factur" />
+          <AssociationSet Name="FK__command__id_F__60A75C0F" Association="Self.FK__command__id_F__60A75C0F">
+            <End Role="factur" EntitySet="facturs" />
+            <End Role="command" EntitySet="commands" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hala_storeModelF2StoreContainer" CdmEntityContainer="hala_storeEntities1">
+          <EntitySetMapping Name="commands">
+            <EntityTypeMapping TypeName="hala_storeModelF2.command">
+              <MappingFragment StoreEntitySet="command">
+                <ScalarProperty Name="idCmd" ColumnName="idCmd" />
+                <ScalarProperty Name="Nomclient" ColumnName="Nomclient" />
+                <ScalarProperty Name="NomProduit" ColumnName="NomProduit" />
+                <ScalarProperty Name="Qnt" ColumnName="Qnt" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="Date_Cmd" ColumnName="Date_Cmd" />
+                <ScalarProperty Name="id_F" ColumnName="id_F" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facturs">
+            <EntityTypeMapping TypeName="hala_storeModelF2.factur">
+              <MappingFragment StoreEntitySet="factur">
+                <ScalarProperty Name="id_F" ColumnName="id_F" />
+                <ScalarProperty Name="Nomclient" ColumnName="Nomclient" />
+                <ScalarProperty Name="NomProduit" ColumnName="NomProduit" />
+                <ScalarProperty Name="Qnt" ColumnName="Qnt" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

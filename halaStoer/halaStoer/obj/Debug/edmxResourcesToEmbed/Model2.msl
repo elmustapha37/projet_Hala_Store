@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hala_storeModelF2StoreContainer" CdmEntityContainer="hala_storeEntities1">
+    <EntitySetMapping Name="commands">
+      <EntityTypeMapping TypeName="hala_storeModelF2.command">
+        <MappingFragment StoreEntitySet="command">
+          <ScalarProperty Name="idCmd" ColumnName="idCmd" />
+          <ScalarProperty Name="Nomclient" ColumnName="Nomclient" />
+          <ScalarProperty Name="NomProduit" ColumnName="NomProduit" />
+          <ScalarProperty Name="Qnt" ColumnName="Qnt" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="Date_Cmd" ColumnName="Date_Cmd" />
+          <ScalarProperty Name="id_F" ColumnName="id_F" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturs">
+      <EntityTypeMapping TypeName="hala_storeModelF2.factur">
+        <MappingFragment StoreEntitySet="factur">
+          <ScalarProperty Name="id_F" ColumnName="id_F" />
+          <ScalarProperty Name="Nomclient" ColumnName="Nomclient" />
+          <ScalarProperty Name="NomProduit" ColumnName="NomProduit" />
+          <ScalarProperty Name="Qnt" ColumnName="Qnt" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

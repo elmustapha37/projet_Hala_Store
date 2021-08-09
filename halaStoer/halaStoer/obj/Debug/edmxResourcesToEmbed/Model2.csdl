@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hala_storeModelF2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="command">
+    <Key>
+      <PropertyRef Name="idCmd" />
+    </Key>
+    <Property Name="idCmd" Type="Int32" Nullable="false" />
+    <Property Name="Nomclient" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NomProduit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Qnt" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="total" Type="Decimal" Precision="9" Scale="2" />
+    <Property Name="Date_Cmd" Type="DateTime" Precision="0" />
+    <Property Name="id_F" Type="Int32" />
+    <NavigationProperty Name="factur" Relationship="Self.FK__command__id_F__60A75C0F" FromRole="command" ToRole="factur" />
+  </EntityType>
+  <EntityType Name="factur">
+    <Key>
+      <PropertyRef Name="id_F" />
+    </Key>
+    <Property Name="id_F" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nomclient" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NomProduit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Qnt" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="total" Type="Decimal" Precision="9" Scale="2" />
+    <NavigationProperty Name="commands" Relationship="Self.FK__command__id_F__60A75C0F" FromRole="factur" ToRole="command" />
+  </EntityType>
+  <Association Name="FK__command__id_F__60A75C0F">
+    <End Role="factur" Type="Self.factur" Multiplicity="0..1" />
+    <End Role="command" Type="Self.command" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="factur">
+        <PropertyRef Name="id_F" />
+      </Principal>
+      <Dependent Role="command">
+        <PropertyRef Name="id_F" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hala_storeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="commands" EntityType="Self.command" />
+    <EntitySet Name="facturs" EntityType="Self.factur" />
+    <AssociationSet Name="FK__command__id_F__60A75C0F" Association="Self.FK__command__id_F__60A75C0F">
+      <End Role="factur" EntitySet="facturs" />
+      <End Role="command" EntitySet="commands" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

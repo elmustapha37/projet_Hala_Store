@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hala_storeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idC" />
+          </Key>
+          <Property Name="idC" Type="int" Nullable="false" />
+          <Property Name="NomC" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="cin" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="pasword" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="hala_storeModelStoreContainer">
+          <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hala_storeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idC" />
+          </Key>
+          <Property Name="idC" Type="Int32" Nullable="false" />
+          <Property Name="NomC" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pasword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="hala_storeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clients" EntityType="Self.client" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hala_storeModelStoreContainer" CdmEntityContainer="hala_storeEntities">
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="hala_storeModel.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="idC" ColumnName="idC" />
+                <ScalarProperty Name="NomC" ColumnName="NomC" />
+                <ScalarProperty Name="cin" ColumnName="cin" />
+                <ScalarProperty Name="pasword" ColumnName="pasword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
